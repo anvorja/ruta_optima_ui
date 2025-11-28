@@ -61,7 +61,7 @@ export function EditOrderDialog({ orderId, open, onOpenChange }: EditOrderDialog
                 description: `La orden ${orderId} ha sido actualizada exitosamente.`,
             })
             onOpenChange(false)
-        } catch (error) {
+        } catch {
             toast({
                 title: "Error",
                 description: "No se pudo actualizar la orden. Intenta de nuevo.",

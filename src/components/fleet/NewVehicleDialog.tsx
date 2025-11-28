@@ -48,7 +48,7 @@ export function NewVehicleDialog({ open, onOpenChange }: NewVehicleDialogProps) 
             })
             reset()
             onOpenChange(false)
-        } catch (error) {
+        } catch {
             toast({
                 title: "Error",
                 description: "No se pudo agregar el vehículo. Intenta de nuevo.",

@@ -48,7 +48,7 @@ export function NewOrderDialog({ open, onOpenChange }: NewOrderDialogProps) {
             })
             reset()
             onOpenChange(false)
-        } catch (error) {
+        } catch {
             toast({
                 title: "Error",
                 description: "No se pudo crear la orden. Intenta de nuevo.",

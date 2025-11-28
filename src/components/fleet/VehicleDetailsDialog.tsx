@@ -2,7 +2,7 @@ import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } f
 import { Badge } from '@/components/ui/badge'
 import { Progress } from '@/components/ui/progress'
 import { useFleetStore } from '@/store/useFleetStore'
-import { Truck, Fuel, Package, MapPin, Calendar, Wrench } from 'lucide-react'
+import { Truck, Fuel, Package, MapPin, Wrench } from 'lucide-react'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
 

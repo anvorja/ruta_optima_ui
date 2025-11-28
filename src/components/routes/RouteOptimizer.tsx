@@ -50,7 +50,7 @@ export function RouteOptimizer({ onOptimizationComplete }: RouteOptimizerProps) 
             })
 
             onOptimizationComplete?.(optimizationResult)
-        } catch (error) {
+        } catch {
             toast({
                 title: "Error",
                 description: "No se pudo completar la optimización.",

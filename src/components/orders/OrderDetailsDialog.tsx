@@ -1,6 +1,6 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from '@/components/ui/dialog'
 import { Badge } from '@/components/ui/badge'
-import { useOrdersStore, type Order } from '@/store/useOrdersStore'
+import { useOrdersStore} from '@/store/useOrdersStore'
 import { Package, MapPin, Clock, AlertCircle, Calendar, Weight } from 'lucide-react'
 import { format } from 'date-fns'
 import { es } from 'date-fns/locale'
