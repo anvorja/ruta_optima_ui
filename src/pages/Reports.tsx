@@ -114,7 +114,7 @@ export function Reports() {
                 <TabsContent value="deliveries" className="space-y-4">
                     <Card className="border-0 shadow-lg">
                         <CardHeader>
-                            <CardTitle>Entregas por Día</CardTitle>
+                            <CardTitle>Entregas por Días</CardTitle>
                         </CardHeader>
                         <CardContent>
                             <ResponsiveContainer width="100%" height={350}>
@@ -172,12 +172,17 @@ export function Reports() {
                                             cx="50%"
                                             cy="50%"
                                             labelLine={false}
-                                            label={({ categoria, percent }) => `${categoria} ${(percent * 100).toFixed(0)}%`}
+                                            label={(entry) => {
+                                                const data = entry as unknown as { categoria: string; valor: number }
+                                                const total = costData.reduce((sum, item) => sum + item.valor, 0)
+                                                const percent = (data.valor / total) * 100
+                                                return `${data.categoria} ${percent.toFixed(0)}%`
+                                            }}
                                             outerRadius={80}
                                             fill="#8884d8"
                                             dataKey="valor"
                                         >
-                                            {costData.map((entry, index) => (
+                                            {costData.map((_, index) => (
                                                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                                             ))}
                                         </Pie>

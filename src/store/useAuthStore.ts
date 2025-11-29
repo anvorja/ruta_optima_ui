@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 
 interface AuthState {
-    user: { name: string; role: 'admin' | 'planner' | 'driver' } | null
+    user: { name: string; role: 'admin' | 'planner' | 'driver'; email?: string } | null
     login: (user: AuthState['user']) => void
     logout: () => void
 }
