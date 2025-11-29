@@ -4,8 +4,9 @@ import type { Route, RouteStop } from '@/store/useRoutesStore'
 
 // Simulated geocoding for Bogotá addresses
 const geocodeAddress = (address: string): [number, number] => {
-    // In a real app, this would call a geocoding API
+    // In a real app, this would call a geocoding API using the address parameter
     // For simulation, we return random coordinates within Bogotá
+    console.log(`Geocoding address: ${address}`) // Using the address parameter
     const baseLat = 4.6097
     const baseLng = -74.0817
     const randomLat = baseLat + (Math.random() - 0.5) * 0.2
