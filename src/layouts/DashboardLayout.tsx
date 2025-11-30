@@ -1,3 +1,4 @@
+// src/layouts/DashboardLayout.tsx
 import { Outlet, Link, useLocation } from 'react-router-dom'
 import { LayoutDashboard, Package, Truck, MapPin, BarChart3, Settings, LogOut } from 'lucide-react'
 import { ThemeToggle } from '@/components/theme-toggle'
