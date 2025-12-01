@@ -1,14 +1,15 @@
 // src/App.tsx
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { ThemeProvider } from '@/providers/ThemeProvider.tsx'
+import { ThemeProvider } from '@/providers/ThemeProvider'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { AuthLayout } from '@/layouts/AuthLayout'
 import { Dashboard } from '@/pages/Dashboard'
 import { Login } from '@/pages/Login'
 import { Orders } from '@/pages/Orders'
 import { Fleet } from '@/pages/Fleet'
-import { RoutePlanner as RoutesPage} from '@/pages/Routes'
+import { Routes as RoutesPage } from '@/pages/Routes'
 import { Reports } from '@/pages/Reports'
+import { Analytics } from '@/pages/Analytics'
 import { Settings } from '@/pages/Settings'
 import { Profile } from '@/pages/Profile'
 import { useAuthStore } from '@/store/useAuthStore'
@@ -65,6 +66,14 @@ function App() {
                         <ProtectedRoute>
                             <MainLayout>
                                 <Reports />
+                            </MainLayout>
+                        </ProtectedRoute>
+                    } />
+
+                    <Route path="/analytics" element={
+                        <ProtectedRoute>
+                            <MainLayout>
+                                <Analytics />
                             </MainLayout>
                         </ProtectedRoute>
                     } />
