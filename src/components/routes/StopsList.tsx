@@ -1,3 +1,4 @@
+// src/components/routes/StopsList.tsx
 import { GripVertical, MapPin, Clock, Trash2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"

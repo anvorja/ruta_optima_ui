@@ -1,3 +1,4 @@
+// src/components/dashboard/index.ts
 export { KPICard } from './KPICard'
 export { LiveMap } from './LiveMap'
 export { OptimizationPanel } from './OptimizationPanel'

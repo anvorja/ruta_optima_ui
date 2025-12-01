@@ -1,3 +1,4 @@
+// src/lib/badgeVariants.ts
 import { cva } from "class-variance-authority"
 
 export const badgeVariants = cva(

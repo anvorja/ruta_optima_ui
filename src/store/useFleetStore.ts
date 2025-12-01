@@ -1,3 +1,4 @@
+// src/store/useFleetStore.ts
 import { create } from 'zustand'
 
 export interface Vehicle {

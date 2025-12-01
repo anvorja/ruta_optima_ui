@@ -1,3 +1,4 @@
+// src/components/routes/MapPreview.tsx
 import { Navigation, MapPin } from "lucide-react"
 import { Card } from "@/components/ui/card"
 

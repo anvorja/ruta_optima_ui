@@ -1,3 +1,4 @@
+// src/components/layout/Header.tsx
 import { Bell, Search, Truck, Package, Clock, Fuel } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
