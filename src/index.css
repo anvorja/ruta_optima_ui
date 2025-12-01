@@ -216,3 +216,13 @@
         transform: translateY(0);
     }
 }
+
+/* Animación pulse para indicadores en vivo */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}

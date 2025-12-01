@@ -355,18 +355,6 @@ export function LiveMap() {
                     </Card>
                 )}
             </div>
-
-            {/* CSS for pulse animation */}
-            <style>{`
-        @keyframes pulse {
-          0%, 100% {
-            opacity: 1;
-          }
-          50% {
-            opacity: 0.5;
-          }
-        }
-      `}</style>
         </div>
     )
 }
