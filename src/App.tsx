@@ -12,6 +12,7 @@ import { Reports } from '@/pages/Reports'
 import { Analytics } from '@/pages/Analytics'
 import { Settings } from '@/pages/Settings'
 import { Profile } from '@/pages/Profile'
+import { LiveMap } from '@/pages/LiveMap'
 import { useAuthStore } from '@/store/useAuthStore'
 import * as React from "react";
 
@@ -61,6 +62,15 @@ function App() {
                             </MainLayout>
                         </ProtectedRoute>
                     } />
+
+                    <Route path="/live-map" element={
+                        <ProtectedRoute>
+                            <MainLayout>
+                                <LiveMap />
+                            </MainLayout>
+                        </ProtectedRoute>
+                    } />
+
 
                     <Route path="/reports" element={
                         <ProtectedRoute>
