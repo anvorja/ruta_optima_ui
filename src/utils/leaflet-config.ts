@@ -1,3 +1,4 @@
+// src/utils/leaflet-config.ts
 import L from 'leaflet'
 
 // @ts-expect-error - Leaflet internal property workaround
