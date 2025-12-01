@@ -1,4 +1,3 @@
-// src/components/layout/Header.tsx
 import { Bell, Search, Truck, Package, Clock, Fuel } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
@@ -11,6 +10,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useAuthStore } from "@/store/useAuthStore"
+import { useNavigate } from "react-router-dom"
 
 const liveStats = [
     { label: "Vehículos activos", value: "12/15", icon: Truck, color: "text-success" },
@@ -21,6 +21,7 @@ const liveStats = [
 
 export function Header() {
     const user = useAuthStore((state) => state.user)
+    const navigate = useNavigate()
 
     return (
         <header className="sticky top-0 z-30 flex h-16 items-center justify-between border-b border-border bg-background/80 backdrop-blur-xl px-6">
@@ -77,11 +78,15 @@ export function Header() {
                     </DropdownMenuContent>
                 </DropdownMenu>
 
-                <div className="h-8 w-8 rounded-full gradient-primary flex items-center justify-center">
+                <button
+                    onClick={() => navigate('/profile')}
+                    className="h-8 w-8 rounded-full gradient-primary flex items-center justify-center cursor-pointer transition-transform hover:scale-110 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    aria-label="Ver perfil"
+                >
           <span className="text-xs font-bold text-primary-foreground">
             {user?.name.charAt(0) || 'U'}
           </span>
-                </div>
+                </button>
             </div>
         </header>
     )
