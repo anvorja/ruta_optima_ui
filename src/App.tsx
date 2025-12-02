@@ -3,7 +3,6 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { ThemeProvider } from '@/providers/ThemeProvider'
 import { MainLayout } from '@/components/layout/MainLayout'
 import { AuthLayout } from '@/layouts/AuthLayout'
-import { Dashboard } from '@/pages/Dashboard'
 import { Login } from '@/pages/Login'
 import { Orders } from '@/pages/Orders'
 import { Fleet } from '@/pages/Fleet'
@@ -15,6 +14,7 @@ import { Profile } from '@/pages/Profile'
 import { LiveMap } from '@/pages/LiveMap'
 import { useAuthStore } from '@/store/useAuthStore'
 import * as React from "react";
+import { Dashboard } from '@/pages/Dashboard'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
     const user = useAuthStore((state) => state.user)
