@@ -1,56 +1,4 @@
-@import "tailwindcss";
-
-@custom-variant dark (&:where(.dark, .dark *));
-
-@theme {
-    /* Colores base */
-    --color-background: var(--background);
-    --color-foreground: var(--foreground);
-    --color-card: var(--card);
-    --color-card-foreground: var(--card-foreground);
-    --color-popover: var(--popover);
-    --color-popover-foreground: var(--popover-foreground);
-    --color-primary: var(--primary);
-    --color-primary-foreground: var(--primary-foreground);
-    --color-secondary: var(--secondary);
-    --color-secondary-foreground: var(--secondary-foreground);
-    --color-muted: var(--muted);
-    --color-muted-foreground: var(--muted-foreground);
-    --color-accent: var(--accent);
-    --color-accent-foreground: var(--accent-foreground);
-    --color-destructive: var(--destructive);
-    --color-destructive-foreground: var(--destructive-foreground);
-    --color-border: var(--border);
-    --color-input: var(--input);
-    --color-ring: var(--ring);
-
-    /* Colores adicionales */
-    --color-success: var(--success);
-    --color-success-foreground: var(--success-foreground);
-    --color-warning: var(--warning);
-    --color-warning-foreground: var(--warning-foreground);
-
-    /* Sidebar */
-    --color-sidebar: var(--sidebar-background);
-    --color-sidebar-foreground: var(--sidebar-foreground);
-    --color-sidebar-primary: var(--sidebar-primary);
-    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
-    --color-sidebar-accent: var(--sidebar-accent);
-    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
-    --color-sidebar-border: var(--sidebar-border);
-    --color-sidebar-ring: var(--sidebar-ring);
-
-    /* Rutas */
-    --color-route-primary: var(--route-primary);
-    --color-route-secondary: var(--route-secondary);
-    --color-route-tertiary: var(--route-tertiary);
-    --color-route-warning: var(--route-warning);
-
-    /* Radius */
-    --radius-sm: calc(var(--radius) - 4px);
-    --radius-md: calc(var(--radius) - 2px);
-    --radius-lg: var(--radius);
-}
+@import "tailwindcss" theme(static);
 
 @layer base {
     :root {
@@ -146,58 +94,142 @@
 }
 
 @layer base {
-    * {
-        @apply border-border;
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: hsl(var(--border));
     }
 
     body {
-        @apply bg-background text-foreground antialiased;
+        background-color: hsl(var(--background));
+        color: hsl(var(--foreground));
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         font-feature-settings: "rlig" 1, "calt" 1;
     }
 }
 
 @layer utilities {
-    /* Efectos glass - Glassmorphism estratégico */
+    /* ========================================
+       SISTEMA GLASSMORPHISM REFINADO
+       Minimalista y Profesional - Tailwind v4
+       ======================================== */
+
+    /* Glass Base - Para elementos generales */
     .glass {
-        @apply bg-card/80 backdrop-blur-xl border border-border/50;
+        background: rgba(255, 255, 255, 0.65);
+        backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
     }
 
+    .dark .glass {
+        background: rgba(15, 23, 42, 0.65);
+        backdrop-filter: blur(16px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.08);
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    }
+
+    /* Glass Strong - Para headers y barras principales */
     .glass-strong {
-        @apply bg-card/90 backdrop-blur-2xl border border-border/60;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(24px) saturate(200%);
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
     }
 
-    /* Glass para modales y elementos flotantes */
+    .dark .glass-strong {
+        background: rgba(15, 23, 42, 0.85);
+        backdrop-filter: blur(24px) saturate(200%);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Glass Modal - Para modales y dropdowns flotantes */
     .glass-modal {
-        background: rgba(255, 255, 255, 0.7);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(20px) saturate(180%);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);
     }
 
     .dark .glass-modal {
-        background: rgba(15, 23, 42, 0.7);
-        backdrop-filter: blur(10px);
+        background: rgba(15, 23, 42, 0.75);
+        backdrop-filter: blur(20px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);
     }
 
-    /* Elevaciones - Sistema de sombras */
+    /* Glass Card - Para cards interactivos con hover */
+    .glass-card {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.25);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .dark .glass-card {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(12px) saturate(150%);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .glass-card:hover {
+        background: rgba(255, 255, 255, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
+        transform: translateY(-2px);
+    }
+
+    .dark .glass-card:hover {
+        background: rgba(15, 23, 42, 0.75);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ========================================
+       SISTEMA DE ELEVACIONES
+       Sombras refinadas para jerarquía visual
+       ======================================== */
+
     .elevation-1 {
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .dark .elevation-1 {
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);
     }
 
     .elevation-2 {
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 2px 4px rgba(0, 0, 0, 0.06);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .dark .elevation-2 {
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);
     }
 
     .elevation-3 {
-        box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1), 0 4px 6px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .dark .elevation-3 {
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.5);
     }
 
     .elevation-4 {
-        box-shadow: 0 20px 25px rgba(0, 0, 0, 0.15), 0 10px 10px rgba(0, 0, 0, 0.04);
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.1);
     }
 
-    /* Gradientes */
+    .dark .elevation-4 {
+        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 8px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ========================================
+       GRADIENTES
+       ======================================== */
+
     .gradient-primary {
         background: linear-gradient(135deg, hsl(var(--primary)), hsl(199 89% 35%));
     }
@@ -216,16 +248,23 @@
 
     /* Texto con gradiente */
     .text-gradient {
-        @apply bg-clip-text text-transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
         background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
     }
 
     .text-gradient-success {
-        @apply bg-clip-text text-transparent;
+        background-clip: text;
+        -webkit-background-clip: text;
+        color: transparent;
         background-image: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 45%));
     }
 
-    /* Animaciones */
+    /* ========================================
+       ANIMACIONES
+       ======================================== */
+
     .animate-fade-up {
         animation: fade-up 0.5s ease-out forwards;
     }
@@ -255,6 +294,10 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
     }
 
+    /* ========================================
+       UTILIDADES DE EXPERIENCIA
+       ======================================== */
+
     /* Smooth scrolling */
     .smooth-scroll {
         scroll-behavior: smooth;
@@ -280,17 +323,27 @@
         background: rgb(from hsl(var(--border)) r g b / 0.8);
     }
 
-    /* Touch-friendly targets for mobile */
+    /* Touch-friendly targets para mobile */
     .touch-target {
         min-height: 44px;
         min-width: 44px;
     }
 
-    /* Focus visible for accessibility */
+    /* Focus visible para accesibilidad */
     .focus-ring {
-        @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2;
+        outline: 2px solid transparent;
+        outline-offset: 2px;
+    }
+
+    .focus-ring:focus-visible {
+        outline: 2px solid hsl(var(--ring));
+        outline-offset: 2px;
     }
 }
+
+/* ========================================
+   KEYFRAMES
+   ======================================== */
 
 @keyframes fade-up {
     from {
@@ -303,7 +356,6 @@
     }
 }
 
-/* Animación pulse para indicadores en vivo */
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
