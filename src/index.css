@@ -1,3 +1,370 @@
+/*@import "tailwindcss" theme(static);*/
+
+/*@layer base {*/
+/*    :root {*/
+/*        !* Colores base - Light Mode *!*/
+/*        --background: 0 0% 100%;*/
+/*        --foreground: 222 47% 11%;*/
+/*        --card: 0 0% 100%;*/
+/*        --card-foreground: 222 47% 11%;*/
+/*        --popover: 0 0% 100%;*/
+/*        --popover-foreground: 222 47% 11%;*/
+/*        --primary: 199 89% 48%;*/
+/*        --primary-foreground: 0 0% 100%;*/
+/*        --secondary: 210 40% 96%;*/
+/*        --secondary-foreground: 222 47% 11%;*/
+/*        --muted: 210 40% 96%;*/
+/*        --muted-foreground: 215 16% 47%;*/
+/*        --accent: 38 92% 50%;*/
+/*        --accent-foreground: 222 47% 11%;*/
+/*        --destructive: 0 84% 60%;*/
+/*        --destructive-foreground: 210 40% 98%;*/
+/*        --border: 214 32% 91%;*/
+/*        --input: 214 32% 91%;*/
+/*        --ring: 199 89% 48%;*/
+/*        --radius: 0.75rem;*/
+
+/*        !* Colores adicionales - Light Mode *!*/
+/*        --success: 142 76% 36%;*/
+/*        --success-foreground: 210 40% 98%;*/
+/*        --warning: 38 92% 50%;*/
+/*        --warning-foreground: 222 47% 11%;*/
+
+/*        !* Sidebar - Light Mode *!*/
+/*        --sidebar-background: 0 0% 98%;*/
+/*        --sidebar-foreground: 240 5% 26%;*/
+/*        --sidebar-primary: 199 89% 48%;*/
+/*        --sidebar-primary-foreground: 0 0% 100%;*/
+/*        --sidebar-accent: 210 40% 96%;*/
+/*        --sidebar-accent-foreground: 222 47% 11%;*/
+/*        --sidebar-border: 214 32% 91%;*/
+/*        --sidebar-ring: 199 89% 48%;*/
+
+/*        !* Rutas - Light Mode *!*/
+/*        --route-primary: 199 89% 48%;*/
+/*        --route-secondary: 142 76% 36%;*/
+/*        --route-tertiary: 280 65% 60%;*/
+/*        --route-warning: 38 92% 50%;*/
+/*    }*/
+
+/*    .dark {*/
+/*        !* Colores base - Dark Mode *!*/
+/*        --background: 222 47% 6%;*/
+/*        --foreground: 210 40% 98%;*/
+/*        --card: 222 47% 8%;*/
+/*        --card-foreground: 210 40% 98%;*/
+/*        --popover: 222 47% 8%;*/
+/*        --popover-foreground: 210 40% 98%;*/
+/*        --primary: 199 89% 48%;*/
+/*        --primary-foreground: 222 47% 6%;*/
+/*        --secondary: 217 33% 17%;*/
+/*        --secondary-foreground: 210 40% 98%;*/
+/*        --muted: 217 33% 14%;*/
+/*        --muted-foreground: 215 20% 55%;*/
+/*        --accent: 38 92% 50%;*/
+/*        --accent-foreground: 222 47% 6%;*/
+/*        --destructive: 0 84% 60%;*/
+/*        --destructive-foreground: 210 40% 98%;*/
+/*        --border: 217 33% 17%;*/
+/*        --input: 217 33% 17%;*/
+/*        --ring: 199 89% 48%;*/
+
+/*        !* Colores adicionales - Dark Mode *!*/
+/*        --success: 142 76% 36%;*/
+/*        --success-foreground: 210 40% 98%;*/
+/*        --warning: 38 92% 50%;*/
+/*        --warning-foreground: 222 47% 6%;*/
+
+/*        !* Sidebar - Dark Mode *!*/
+/*        --sidebar-background: 222 47% 5%;*/
+/*        --sidebar-foreground: 215 20% 65%;*/
+/*        --sidebar-primary: 199 89% 48%;*/
+/*        --sidebar-primary-foreground: 222 47% 6%;*/
+/*        --sidebar-accent: 217 33% 12%;*/
+/*        --sidebar-accent-foreground: 210 40% 98%;*/
+/*        --sidebar-border: 217 33% 14%;*/
+/*        --sidebar-ring: 199 89% 48%;*/
+
+/*        !* Rutas - Dark Mode *!*/
+/*        --route-primary: 199 89% 48%;*/
+/*        --route-secondary: 142 76% 36%;*/
+/*        --route-tertiary: 280 65% 60%;*/
+/*        --route-warning: 38 92% 50%;*/
+/*    }*/
+/*}*/
+
+/*@layer base {*/
+/*    *,*/
+/*    ::after,*/
+/*    ::before,*/
+/*    ::backdrop,*/
+/*    ::file-selector-button {*/
+/*        border-color: hsl(var(--border));*/
+/*    }*/
+
+/*    body {*/
+/*        background-color: hsl(var(--background));*/
+/*        color: hsl(var(--foreground));*/
+/*        -webkit-font-smoothing: antialiased;*/
+/*        -moz-osx-font-smoothing: grayscale;*/
+/*        font-feature-settings: "rlig" 1, "calt" 1;*/
+/*    }*/
+/*}*/
+
+/*@layer utilities {*/
+/*    !* ========================================*/
+/*       SISTEMA GLASSMORPHISM REFINADO*/
+/*       Minimalista y Profesional - Tailwind v4*/
+/*       ======================================== *!*/
+
+/*    !* Glass Base - Para elementos generales *!*/
+/*    .glass {*/
+/*        background: rgba(255, 255, 255, 0.65);*/
+/*        backdrop-filter: blur(16px) saturate(180%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.3);*/
+/*        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);*/
+/*    }*/
+
+/*    .dark .glass {*/
+/*        background: rgba(15, 23, 42, 0.65);*/
+/*        backdrop-filter: blur(16px) saturate(180%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.08);*/
+/*        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);*/
+/*    }*/
+
+/*    !* Glass Strong - Para headers y barras principales *!*/
+/*    .glass-strong {*/
+/*        background: rgba(255, 255, 255, 0.85);*/
+/*        backdrop-filter: blur(24px) saturate(200%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.4);*/
+/*        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);*/
+/*    }*/
+
+/*    .dark .glass-strong {*/
+/*        background: rgba(15, 23, 42, 0.85);*/
+/*        backdrop-filter: blur(24px) saturate(200%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.12);*/
+/*        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);*/
+/*    }*/
+
+/*    !* Glass Modal - Para modales y dropdowns flotantes *!*/
+/*    .glass-modal {*/
+/*        background: rgba(255, 255, 255, 0.75);*/
+/*        backdrop-filter: blur(20px) saturate(180%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.35);*/
+/*        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.15);*/
+/*    }*/
+
+/*    .dark .glass-modal {*/
+/*        background: rgba(15, 23, 42, 0.75);*/
+/*        backdrop-filter: blur(20px) saturate(180%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.1);*/
+/*        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7);*/
+/*    }*/
+
+/*    !* Glass Card - Para cards interactivos con hover *!*/
+/*    .glass-card {*/
+/*        background: rgba(255, 255, 255, 0.6);*/
+/*        backdrop-filter: blur(12px) saturate(150%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.25);*/
+/*        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);*/
+/*    }*/
+
+/*    .dark .glass-card {*/
+/*        background: rgba(15, 23, 42, 0.6);*/
+/*        backdrop-filter: blur(12px) saturate(150%);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.06);*/
+/*    }*/
+
+/*    .glass-card:hover {*/
+/*        background: rgba(255, 255, 255, 0.75);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.35);*/
+/*        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);*/
+/*        transform: translateY(-2px);*/
+/*    }*/
+
+/*    .dark .glass-card:hover {*/
+/*        background: rgba(15, 23, 42, 0.75);*/
+/*        border: 1px solid rgba(255, 255, 255, 0.12);*/
+/*        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);*/
+/*    }*/
+
+/*    !* ========================================*/
+/*       SISTEMA DE ELEVACIONES*/
+/*       Sombras refinadas para jerarquía visual*/
+/*       ======================================== *!*/
+
+/*    .elevation-1 {*/
+/*        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06), 0 1px 4px rgba(0, 0, 0, 0.04);*/
+/*    }*/
+
+/*    .dark .elevation-1 {*/
+/*        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4), 0 1px 4px rgba(0, 0, 0, 0.3);*/
+/*    }*/
+
+/*    .elevation-2 {*/
+/*        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08), 0 2px 6px rgba(0, 0, 0, 0.06);*/
+/*    }*/
+
+/*    .dark .elevation-2 {*/
+/*        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), 0 2px 6px rgba(0, 0, 0, 0.4);*/
+/*    }*/
+
+/*    .elevation-3 {*/
+/*        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(0, 0, 0, 0.08);*/
+/*    }*/
+
+/*    .dark .elevation-3 {*/
+/*        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 4px 12px rgba(0, 0, 0, 0.5);*/
+/*    }*/
+
+/*    .elevation-4 {*/
+/*        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.12), 0 8px 24px rgba(0, 0, 0, 0.1);*/
+/*    }*/
+
+/*    .dark .elevation-4 {*/
+/*        box-shadow: 0 16px 48px rgba(0, 0, 0, 0.7), 0 8px 24px rgba(0, 0, 0, 0.6);*/
+/*    }*/
+
+/*    !* ========================================*/
+/*       GRADIENTES*/
+/*       ======================================== *!*/
+
+/*    .gradient-primary {*/
+/*        background: linear-gradient(135deg, hsl(var(--primary)), hsl(199 89% 35%));*/
+/*    }*/
+
+/*    .gradient-success {*/
+/*        background: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 28%));*/
+/*    }*/
+
+/*    .gradient-card {*/
+/*        background: linear-gradient(180deg, hsl(222 47% 10%), hsl(222 47% 7%));*/
+/*    }*/
+
+/*    .gradient-overlay {*/
+/*        background: linear-gradient(to bottom, transparent, rgb(from hsl(var(--background)) r g b / 0.8));*/
+/*    }*/
+
+/*    !* Texto con gradiente *!*/
+/*    .text-gradient {*/
+/*        background-clip: text;*/
+/*        -webkit-background-clip: text;*/
+/*        color: transparent;*/
+/*        background-image: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));*/
+/*    }*/
+
+/*    .text-gradient-success {*/
+/*        background-clip: text;*/
+/*        -webkit-background-clip: text;*/
+/*        color: transparent;*/
+/*        background-image: linear-gradient(135deg, hsl(var(--success)), hsl(142 76% 45%));*/
+/*    }*/
+
+/*    !* ========================================*/
+/*       ANIMACIONES*/
+/*       ======================================== *!*/
+
+/*    .animate-fade-up {*/
+/*        animation: fade-up 0.5s ease-out forwards;*/
+/*    }*/
+
+/*    .animate-fade-up-delay-1 {*/
+/*        animation: fade-up 0.5s ease-out 0.1s forwards;*/
+/*        opacity: 0;*/
+/*    }*/
+
+/*    .animate-fade-up-delay-2 {*/
+/*        animation: fade-up 0.5s ease-out 0.2s forwards;*/
+/*        opacity: 0;*/
+/*    }*/
+
+/*    .animate-fade-up-delay-3 {*/
+/*        animation: fade-up 0.5s ease-out 0.3s forwards;*/
+/*        opacity: 0;*/
+/*    }*/
+
+/*    !* Hover effects *!*/
+/*    .hover-lift {*/
+/*        transition: transform 0.3s ease, box-shadow 0.3s ease;*/
+/*    }*/
+
+/*    .hover-lift:hover {*/
+/*        transform: translateY(-2px);*/
+/*        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);*/
+/*    }*/
+
+/*    !* ========================================*/
+/*       UTILIDADES DE EXPERIENCIA*/
+/*       ======================================== *!*/
+
+/*    !* Smooth scrolling *!*/
+/*    .smooth-scroll {*/
+/*        scroll-behavior: smooth;*/
+/*        scrollbar-width: thin;*/
+/*        scrollbar-color: hsl(var(--border)) transparent;*/
+/*    }*/
+
+/*    .smooth-scroll::-webkit-scrollbar {*/
+/*        width: 8px;*/
+/*        height: 8px;*/
+/*    }*/
+
+/*    .smooth-scroll::-webkit-scrollbar-track {*/
+/*        background: transparent;*/
+/*    }*/
+
+/*    .smooth-scroll::-webkit-scrollbar-thumb {*/
+/*        background: hsl(var(--border));*/
+/*        border-radius: 4px;*/
+/*    }*/
+
+/*    .smooth-scroll::-webkit-scrollbar-thumb:hover {*/
+/*        background: rgb(from hsl(var(--border)) r g b / 0.8);*/
+/*    }*/
+
+/*    !* Touch-friendly targets para mobile *!*/
+/*    .touch-target {*/
+/*        min-height: 44px;*/
+/*        min-width: 44px;*/
+/*    }*/
+
+/*    !* Focus visible para accesibilidad *!*/
+/*    .focus-ring {*/
+/*        outline: 2px solid transparent;*/
+/*        outline-offset: 2px;*/
+/*    }*/
+
+/*    .focus-ring:focus-visible {*/
+/*        outline: 2px solid hsl(var(--ring));*/
+/*        outline-offset: 2px;*/
+/*    }*/
+/*}*/
+
+/*!* ========================================*/
+/*   KEYFRAMES*/
+/*   ======================================== *!*/
+
+/*@keyframes fade-up {*/
+/*    from {*/
+/*        opacity: 0;*/
+/*        transform: translateY(20px);*/
+/*    }*/
+/*    to {*/
+/*        opacity: 1;*/
+/*        transform: translateY(0);*/
+/*    }*/
+/*}*/
+
+/*@keyframes pulse {*/
+/*    0%, 100% {*/
+/*        opacity: 1;*/
+/*    }*/
+/*    50% {*/
+/*        opacity: 0.5;*/
+/*    }*/
+/*}*/
+
 @import "tailwindcss" theme(static);
 
 @layer base {
@@ -191,7 +558,7 @@
 
     /* ========================================
        SISTEMA DE ELEVACIONES
-       Sombras refinadas para jerarquía visual
+       Sombras refinadas para jerarquÃ­a visual
        ======================================== */
 
     .elevation-1 {
@@ -269,6 +636,11 @@
         animation: fade-up 0.5s ease-out forwards;
     }
 
+    .animate-fade-up-delay-0 {
+        animation: fade-up 0.5s ease-out 0s forwards;
+        opacity: 0;
+    }
+
     .animate-fade-up-delay-1 {
         animation: fade-up 0.5s ease-out 0.1s forwards;
         opacity: 0;
@@ -284,14 +656,46 @@
         opacity: 0;
     }
 
-    /* Hover effects */
+    /* Hover effects mejorados */
     .hover-lift {
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+        box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .hover-lift:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        transform: translateY(-4px);
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    }
+
+    .dark .hover-lift:hover {
+        box-shadow: 0 12px 24px rgba(0, 0, 0, 0.6);
+    }
+
+    /* Animación de entrada con scale */
+    .animate-scale-in {
+        animation: scale-in 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        opacity: 0;
+    }
+
+    /* Animación de shimmer para loading states */
+    .animate-shimmer {
+        animation: shimmer 2s infinite;
+        background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                transparent 100%
+        );
+        background-size: 200% 100%;
+    }
+
+    .dark .animate-shimmer {
+        background: linear-gradient(
+                90deg,
+                transparent 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                transparent 100%
+        );
     }
 
     /* ========================================
@@ -356,11 +760,40 @@
     }
 }
 
+@keyframes scale-in {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
 @keyframes pulse {
     0%, 100% {
         opacity: 1;
     }
     50% {
         opacity: 0.5;
+    }
+}
+
+@keyframes spin-slow {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
     }
 }
