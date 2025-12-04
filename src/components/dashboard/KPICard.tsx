@@ -1,7 +1,7 @@
 // src/components/dashboard/KPICard.tsx
 import type {LucideIcon} from "lucide-react"
 import { cn } from "@/lib/utils"
-import { ArrowUpRight, ArrowDownRight, Minus } from 'lucide-react'
+import { ArrowUpRight, ArrowDownRight, Minus, TrendingUp } from 'lucide-react'
 import { LineChart, Line, ResponsiveContainer } from 'recharts'
 
 interface KPICardProps {
@@ -15,14 +15,14 @@ interface KPICardProps {
     sparklineData?: number[]
 }
 
-// Mapeo estÃƒÂ¡tico de iconos de tendencia fuera del componente
+// Mapeo estático de iconos de tendencia fuera del componente
 const TREND_ICONS: Record<KPICardProps['changeType'] & string, LucideIcon> = {
     positive: ArrowUpRight,
     negative: ArrowDownRight,
     neutral: Minus,
 }
 
-// Mapeo estÃƒÂ¡tico de colores de sparkline fuera del componente
+// Mapeo estático de colores de sparkline fuera del componente
 const SPARKLINE_COLORS: Record<KPICardProps['changeType'] & string, string> = {
     positive: 'hsl(var(--success))',
     negative: 'hsl(var(--destructive))',
@@ -47,80 +47,91 @@ export function KPICard({
     return (
         <div
             className={cn(
-                "group relative overflow-hidden rounded-2xl glass-card p-5 sm:p-6",
-                "transition-all duration-300 ease-out cursor-pointer",
-                "border border-border/50",
-                "hover:shadow-lg hover:shadow-primary/5",
+                "group relative overflow-hidden rounded-3xl glass-card p-6 sm:p-7",
+                "transition-all duration-500 ease-out cursor-pointer touch-target",
+                "border border-white/30 dark:border-white/10",
+                "hover:shadow-2xl hover:shadow-primary/10",
+                "hover-lift",
                 className
             )}
         >
-            {/* Efectos de fondo mejorados */}
-            <div className="absolute inset-0 bg-gradient-to-br from-primary/[0.02] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            <div className="absolute -right-8 -top-8 h-40 w-40 rounded-full bg-gradient-to-br from-primary/[0.06] to-transparent blur-3xl transition-all duration-700 group-hover:scale-125" />
+            {/* Gradient Mesh Background Premium */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+                <div className="absolute top-0 right-0 h-32 w-32 bg-primary/10 rounded-full blur-3xl" />
+            </div>
 
-            {/* Borde interior sutil */}
-            <div className="absolute inset-[1px] rounded-2xl bg-gradient-to-br from-background/40 via-transparent to-transparent pointer-events-none" />
+            {/* Shimmer effect on hover */}
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+                <div className="absolute inset-0 animate-shimmer bg-gradient-to-r from-transparent via-white/5 to-transparent" />
+            </div>
 
-            <div className="relative space-y-3.5 sm:space-y-4">
+            {/* Inner glow border */}
+            <div className="absolute inset-[1px] rounded-3xl bg-gradient-to-br from-white/20 via-transparent to-transparent dark:from-white/5 pointer-events-none" />
+
+            <div className="relative space-y-5">
                 {/* Header con mejor jerarquía visual */}
-                <div className="flex items-start justify-between gap-3">
-                    <div className="space-y-2 flex-1 min-w-0">
-                        <p className="text-[10px] sm:text-xs font-semibold text-muted-foreground/70 uppercase tracking-widest truncate leading-none">
+                <div className="flex items-start justify-between gap-4">
+                    <div className="space-y-2.5 flex-1 min-w-0">
+                        <p className="text-xs font-bold text-muted-foreground uppercase tracking-wider truncate leading-none flex items-center gap-2">
+                            <TrendingUp className="h-3 w-3 opacity-70" />
                             {title}
                         </p>
-                        <p className="text-3xl sm:text-4xl lg:text-[42px] font-extrabold tracking-tight text-foreground transition-all duration-300 group-hover:scale-[1.02] origin-left leading-none">
+                        <p className="text-4xl sm:text-5xl lg:text-[52px] font-black tracking-tighter text-foreground transition-all duration-500 group-hover:scale-[1.03] origin-left leading-none text-shadow-soft">
                             {value}
                         </p>
                     </div>
+
+                    {/* Icon container premium */}
                     <div className={cn(
-                        "relative rounded-xl sm:rounded-2xl p-2.5 sm:p-3.5 shrink-0",
-                        "backdrop-blur-md bg-gradient-to-br from-background/60 to-background/40",
-                        "group-hover:scale-110 group-hover:rotate-6 transition-all duration-500",
-                        "border border-border/50",
-                        "shadow-sm group-hover:shadow-md",
+                        "relative rounded-2xl sm:rounded-3xl p-3.5 sm:p-4 shrink-0",
+                        "glass-input",
+                        "group-hover:scale-110 group-hover:rotate-3 transition-all duration-700",
+                        "shadow-lg group-hover:shadow-xl",
                         iconColor
                     )}>
-                        {/* Glow effect en el icono */}
+                        {/* Icon glow effect premium */}
                         <div className={cn(
-                            "absolute inset-0 rounded-xl sm:rounded-2xl blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-500",
+                            "absolute inset-0 rounded-2xl sm:rounded-3xl blur-xl opacity-0 group-hover:opacity-50 transition-opacity duration-700",
                             iconColor
                         )} />
-                        <Icon className="relative h-5 w-5 sm:h-6 sm:w-6 drop-shadow-sm" />
+                        <Icon className="relative h-6 w-6 sm:h-7 sm:w-7 drop-shadow-lg" />
                     </div>
                 </div>
 
-                {/* Sparkline mejorado con gradiente */}
-                <div className="relative h-14 sm:h-16 -mx-1 opacity-75 group-hover:opacity-100 transition-all duration-300">
-                    {/* Gradiente de fondo sutil */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                {/* Sparkline mejorado con gradiente premium */}
+                <div className="relative h-16 sm:h-20 -mx-2 opacity-80 group-hover:opacity-100 transition-all duration-500">
+                    {/* Gradient background */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-primary/8 to-transparent rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+
                     <ResponsiveContainer width="100%" height="100%">
                         <LineChart data={chartData}>
                             <Line
                                 type="monotone"
                                 dataKey="value"
                                 stroke={sparklineColor}
-                                strokeWidth={2.5}
+                                strokeWidth={3}
                                 dot={false}
-                                animationDuration={1200}
+                                animationDuration={1500}
                                 animationEasing="ease-in-out"
                             />
                         </LineChart>
                     </ResponsiveContainer>
                 </div>
 
-                {/* Change indicator más prominente */}
+                {/* Change indicator premium con glassmorphism */}
                 {change && (
                     <div className="flex items-center">
                         <div className={cn(
-                            "flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm font-bold rounded-full px-3 py-1.5",
-                            "transition-all duration-300 backdrop-blur-sm",
-                            "border",
-                            changeType === "positive" && "text-success bg-success/10 border-success/20 group-hover:bg-success/15",
-                            changeType === "negative" && "text-destructive bg-destructive/10 border-destructive/20 group-hover:bg-destructive/15",
-                            changeType === "neutral" && "text-muted-foreground bg-muted/30 border-border/50 group-hover:bg-muted/40"
+                            "flex items-center gap-2 text-sm font-bold rounded-2xl px-4 py-2",
+                            "transition-all duration-500",
+                            "glass-input shadow-sm",
+                            changeType === "positive" && "text-success hover:bg-success/15",
+                            changeType === "negative" && "text-destructive hover:bg-destructive/15",
+                            changeType === "neutral" && "text-muted-foreground hover:bg-muted/50"
                         )}>
-                            <TrendIcon className="h-3.5 w-3.5 sm:h-4 sm:w-4 shrink-0" />
-                            <span className="truncate">{change}</span>
+                            <TrendIcon className="h-4 w-4 shrink-0" />
+                            <span className="truncate font-semibold">{change}</span>
                         </div>
                     </div>
                 )}
