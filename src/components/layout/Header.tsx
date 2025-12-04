@@ -1,8 +1,7 @@
 // src/components/layout/Header.tsx
-import { Bell, Search, Truck, Package, Clock, Fuel, Menu, User, LogOut, Settings } from "lucide-react"
+import { Bell, Search, Truck, Package, Clock, Fuel, Menu, User, LogOut, Settings, AlertCircle, CheckCircle, AlertTriangle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Badge } from "@/components/ui/badge"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -14,6 +13,7 @@ import {
 import { ThemeToggle } from "@/components/theme-toggle"
 import { useAuthStore } from "@/store/useAuthStore"
 import { useNavigate } from "react-router-dom"
+import { cn } from "@/lib/utils"
 
 const liveStats = [
     { label: "Vehículos activos", value: "12/15", icon: Truck, color: "text-success" },
@@ -57,54 +57,60 @@ export function Header({ onMenuClick }: HeaderProps) {
     const unreadNotifications = notifications.filter(n => n.type === 'critical' || n.type === 'warning').length
 
     return (
-        <header className="sticky top-0 z-30 glass-strong border-b border-border/40 backdrop-blur-xl">
-            <div className="flex h-16 sm:h-[72px] items-center justify-between px-4 sm:px-6 lg:px-8">
+        <header className="sticky top-0 z-30 glass-strong border-b border-white/40 dark:border-white/10">
+            <div className="flex h-16 sm:h-[72px] items-center justify-between px-4 sm:px-6 lg:px-8 gap-4">
                 {/* Left section - Menu button + Search */}
-                <div className="flex items-center gap-3 sm:gap-4 flex-1">
-                    {/* Menu button for mobile */}
+                <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0">
+                    {/* Menu button for mobile con glassmorphism */}
                     <Button
                         variant="ghost"
                         size="icon"
-                        className="md:hidden hover:bg-muted/60 transition-all duration-200 hover:scale-105 active:scale-95"
+                        className="md:hidden glass-input hover:bg-primary/10 transition-smooth hover:scale-105 active:scale-95 touch-target"
                         onClick={onMenuClick}
                     >
                         <Menu className="h-5 w-5" />
                     </Button>
 
-                    {/* Search mejorado */}
+                    {/* Search con glassmorphism premium */}
                     <div className="relative flex-1 max-w-md group">
-                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground/60 transition-colors group-hover:text-muted-foreground" />
+                        <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground transition-colors group-hover:text-primary" />
                         <Input
                             placeholder="Buscar órdenes, vehículos..."
-                            className="w-full h-10 sm:h-11 bg-muted/30 backdrop-blur-sm border-border/40 pl-10 pr-4
-                                     focus-visible:ring-2 focus-visible:ring-primary/50 focus-visible:border-primary/50
-                                     transition-all duration-200 hover:bg-muted/40
-                                     placeholder:text-muted-foreground/60"
+                            className="w-full h-10 sm:h-11 glass-input pl-10 pr-4 rounded-2xl
+                                     focus:ring-2 focus:ring-primary/50 transition-smooth
+                                     placeholder:text-muted-foreground"
                         />
                     </div>
                 </div>
 
-                {/* Center section - Live Stats mejorado */}
-                <div className="hidden lg:flex items-center gap-5 xl:gap-7 px-6 xl:px-8">
+                {/* Center section - Live Stats con glassmorphism */}
+                <div className="hidden lg:flex items-center gap-3 xl:gap-4">
                     {liveStats.map((stat, index) => (
                         <div
                             key={stat.label}
-                            className="flex items-center gap-2.5 group cursor-pointer"
-                            style={{
-                                animation: `fade-up 0.3s ease-out ${index * 0.1}s forwards`,
-                                opacity: 0
-                            }}
+                            className={cn(
+                                "flex items-center gap-2.5 px-3 py-2 rounded-2xl glass-input",
+                                "hover:bg-white/60 dark:hover:bg-white/10 transition-smooth cursor-pointer",
+                                "hover:scale-105 group",
+                                `animate-fade-up-delay-${index}`
+                            )}
                         >
-                            <div className="relative rounded-lg bg-muted/40 p-2 group-hover:bg-muted/60 transition-all duration-300 group-hover:scale-110">
+                            <div className={cn(
+                                "relative rounded-xl p-2 glass-input",
+                                "group-hover:scale-110 transition-all duration-500"
+                            )}>
                                 {/* Glow effect en hover */}
-                                <div className={`absolute inset-0 rounded-lg blur-md opacity-0 group-hover:opacity-30 transition-opacity duration-300 ${stat.color}`} />
-                                <stat.icon className={`relative h-4 w-4 ${stat.color}`} />
+                                <div className={cn(
+                                    "absolute inset-0 rounded-xl blur-lg opacity-0 group-hover:opacity-40 transition-opacity duration-500",
+                                    stat.color
+                                )} />
+                                <stat.icon className={cn("relative h-4 w-4", stat.color)} />
                             </div>
                             <div className="flex flex-col">
-                                <span className="text-[10px] font-semibold text-muted-foreground/70 uppercase tracking-widest leading-none">
+                                <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-wider leading-none">
                                     {stat.label}
                                 </span>
-                                <span className="text-sm font-extrabold text-foreground mt-0.5 leading-none group-hover:text-primary transition-colors duration-200">
+                                <span className="text-sm font-black text-foreground mt-1 leading-none group-hover:text-primary transition-colors duration-300">
                                     {stat.value}
                                 </span>
                             </div>
@@ -112,136 +118,159 @@ export function Header({ onMenuClick }: HeaderProps) {
                     ))}
                 </div>
 
-                {/* Right section - Actions mejoradas */}
+                {/* Right section - Actions premium */}
                 <div className="flex items-center gap-2 sm:gap-2.5">
                     {/* Theme Toggle */}
                     <ThemeToggle />
 
-                    {/* Notifications mejoradas */}
+                    {/* Notifications con glassmorphism premium */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="relative hover:bg-muted/60 transition-all duration-200 hover:scale-105 active:scale-95"
+                                className="relative glass-input hover:bg-primary/10 transition-smooth hover:scale-105 active:scale-95 touch-target"
                             >
                                 <Bell className="h-5 w-5" />
                                 {unreadNotifications > 0 && (
-                                    <Badge
-                                        className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-[10px] font-bold
-                                                 bg-gradient-to-br from-destructive to-destructive/80 text-destructive-foreground
-                                                 border-2 border-background shadow-sm animate-pulse"
-                                        variant="destructive"
-                                    >
+                                    <div className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center rounded-full bg-gradient-to-br from-destructive to-destructive/80 text-white text-[10px] font-bold border-2 border-background shadow-lg animate-bounce-subtle">
                                         {unreadNotifications}
-                                    </Badge>
+                                    </div>
                                 )}
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                             align="end"
-                            className="w-80 sm:w-96 glass-modal border border-border/50 p-0 overflow-hidden"
+                            className="w-80 sm:w-96 glass-modal border border-white/30 dark:border-white/10 p-0 overflow-hidden rounded-3xl"
                         >
-                            <div className="bg-gradient-to-br from-muted/30 to-background/20 p-4 border-b border-border/40">
-                                <div className="flex items-center justify-between">
-                                    <DropdownMenuLabel className="font-bold text-base p-0">
+                            {/* Header del dropdown */}
+                            <div className="relative p-5 border-b border-white/20 dark:border-white/10">
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+                                <div className="relative flex items-center justify-between">
+                                    <DropdownMenuLabel className="font-bold text-lg p-0">
                                         Notificaciones
                                     </DropdownMenuLabel>
                                     {unreadNotifications > 0 && (
-                                        <Badge variant="destructive" className="text-xs font-bold">
+                                        <div className="badge-glass bg-destructive/10 text-destructive font-bold">
                                             {unreadNotifications} nuevas
-                                        </Badge>
+                                        </div>
                                     )}
                                 </div>
                             </div>
+
+                            {/* Lista de notificaciones */}
                             <div className="max-h-96 overflow-y-auto smooth-scroll">
                                 {notifications.map((notification, index) => (
                                     <DropdownMenuItem
                                         key={notification.id}
-                                        className="flex flex-col items-start gap-2 p-4 cursor-pointer
-                                                 hover:bg-muted/40 transition-all duration-200 border-b border-border/30 last:border-0"
-                                        style={{
-                                            animation: `fade-up 0.2s ease-out ${index * 0.05}s forwards`,
-                                            opacity: 0
-                                        }}
+                                        className={cn(
+                                            "flex flex-col items-start gap-3 p-4 cursor-pointer",
+                                            "hover:bg-white/50 dark:hover:bg-white/5 transition-all duration-300",
+                                            "border-b border-white/10 dark:border-white/5 last:border-0",
+                                            `animate-fade-up-delay-${Math.min(index, 3)}`
+                                        )}
                                     >
-                                        <div className="flex items-center justify-between w-full">
-                                            <span className="font-bold text-sm">{notification.title}</span>
-                                            <Badge
-                                                variant={
-                                                    notification.type === "critical"
-                                                        ? "destructive"
-                                                        : notification.type === "warning"
-                                                            ? "default"
-                                                            : "secondary"
-                                                }
-                                                className="text-[10px] px-2.5 py-0.5 font-bold"
-                                            >
-                                                {notification.type}
-                                            </Badge>
+                                        <div className="flex items-start gap-3 w-full">
+                                            {/* Icon con color según tipo */}
+                                            <div className={cn(
+                                                "p-2 rounded-xl shrink-0",
+                                                notification.type === "critical" && "bg-destructive/10",
+                                                notification.type === "warning" && "bg-warning/10",
+                                                notification.type === "success" && "bg-success/10"
+                                            )}>
+                                                {notification.type === "critical" && <AlertCircle className="h-4 w-4 text-destructive" />}
+                                                {notification.type === "warning" && <AlertTriangle className="h-4 w-4 text-warning" />}
+                                                {notification.type === "success" && <CheckCircle className="h-4 w-4 text-success" />}
+                                            </div>
+
+                                            <div className="flex-1 min-w-0">
+                                                <div className="flex items-center justify-between gap-2 mb-1">
+                                                    <span className="font-bold text-sm">{notification.title}</span>
+                                                    <span className="text-[10px] text-muted-foreground font-medium shrink-0">
+                                                        {notification.time}
+                                                    </span>
+                                                </div>
+                                                <p className="text-xs text-muted-foreground leading-relaxed">
+                                                    {notification.description}
+                                                </p>
+                                            </div>
                                         </div>
-                                        <p className="text-xs text-muted-foreground leading-relaxed">{notification.description}</p>
-                                        <span className="text-[10px] text-muted-foreground/60 font-medium">{notification.time}</span>
                                     </DropdownMenuItem>
                                 ))}
+                            </div>
+
+                            {/* Footer del dropdown */}
+                            <div className="p-3 border-t border-white/20 dark:border-white/10">
+                                <button className="w-full py-2.5 rounded-2xl glass-input font-semibold text-sm hover:bg-primary/10 transition-smooth">
+                                    Ver todas las notificaciones
+                                </button>
                             </div>
                         </DropdownMenuContent>
                     </DropdownMenu>
 
-                    {/* User Menu mejorado */}
+                    {/* User Menu premium */}
                     <DropdownMenu>
                         <DropdownMenuTrigger asChild>
                             <Button
                                 variant="ghost"
-                                className="relative h-10 w-10 sm:h-11 sm:w-11 rounded-full hover:bg-muted/60
-                                         transition-all duration-200 hover:scale-105 active:scale-95 p-0"
+                                className="relative h-10 w-10 sm:h-11 sm:w-11 rounded-full p-0 hover:scale-105 transition-smooth touch-target"
                             >
-                                <div className="flex h-full w-full items-center justify-center rounded-full
-                                              bg-gradient-to-br from-primary via-primary to-primary/70
-                                              text-primary-foreground font-bold text-sm
-                                              shadow-md hover:shadow-lg transition-shadow duration-200">
+                                <div className="h-full w-full rounded-full bg-gradient-primary-glow flex items-center justify-center text-white font-bold text-sm shadow-lg">
                                     {user?.name?.charAt(0).toUpperCase() || "U"}
                                 </div>
                             </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent
                             align="end"
-                            className="w-64 glass-modal border border-border/50 p-0 overflow-hidden"
+                            className="w-64 glass-modal border border-white/30 dark:border-white/10 p-0 overflow-hidden rounded-3xl"
                         >
-                            <div className="bg-gradient-to-br from-muted/30 to-background/20 p-4 border-b border-border/40">
-                                <DropdownMenuLabel className="font-normal p-0">
-                                    <div className="flex flex-col space-y-1.5">
-                                        <p className="text-sm font-bold leading-none">{user?.name || "Usuario"}</p>
-                                        <p className="text-xs leading-none text-muted-foreground/70">
-                                            {user?.email || "usuario@rutaoptima.com"}
-                                        </p>
+                            {/* User info header */}
+                            <div className="relative p-5 border-b border-white/20 dark:border-white/10">
+                                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+                                <DropdownMenuLabel className="relative font-normal p-0">
+                                    <div className="flex items-center gap-3">
+                                        <div className="h-12 w-12 rounded-full bg-gradient-primary-glow flex items-center justify-center text-white font-bold shadow-lg">
+                                            {user?.name?.charAt(0).toUpperCase() || "U"}
+                                        </div>
+                                        <div className="flex flex-col">
+                                            <p className="text-sm font-bold leading-none mb-1.5">
+                                                {user?.name || "Usuario"}
+                                            </p>
+                                            <p className="text-xs leading-none text-muted-foreground">
+                                                {user?.email || "usuario@rutaoptima.com"}
+                                            </p>
+                                        </div>
                                     </div>
                                 </DropdownMenuLabel>
                             </div>
-                            <div className="p-1">
+
+                            {/* Menu items */}
+                            <div className="p-2">
                                 <DropdownMenuItem
                                     onClick={() => navigate('/profile')}
-                                    className="cursor-pointer hover:bg-muted/40 transition-colors duration-200 rounded-lg my-0.5 px-3 py-2.5"
+                                    className="cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 transition-smooth rounded-2xl px-3 py-3 touch-target"
                                 >
-                                    <User className="mr-2.5 h-4 w-4" />
-                                    <span className="font-medium">Mi Perfil</span>
+                                    <User className="mr-3 h-4 w-4" />
+                                    <span className="font-semibold">Mi Perfil</span>
                                 </DropdownMenuItem>
                                 <DropdownMenuItem
                                     onClick={() => navigate('/settings')}
-                                    className="cursor-pointer hover:bg-muted/40 transition-colors duration-200 rounded-lg my-0.5 px-3 py-2.5"
+                                    className="cursor-pointer hover:bg-white/50 dark:hover:bg-white/5 transition-smooth rounded-2xl px-3 py-3 touch-target"
                                 >
-                                    <Settings className="mr-2.5 h-4 w-4" />
-                                    <span className="font-medium">Configuración</span>
+                                    <Settings className="mr-3 h-4 w-4" />
+                                    <span className="font-semibold">Configuración</span>
                                 </DropdownMenuItem>
                             </div>
+
                             <DropdownMenuSeparator className="my-1" />
-                            <div className="p-1 pb-2">
+
+                            {/* Logout */}
+                            <div className="p-2 pb-3">
                                 <DropdownMenuItem
                                     onClick={logout}
-                                    className="cursor-pointer text-destructive font-medium focus:text-destructive
-                                             hover:bg-destructive/10 transition-all duration-200 rounded-lg px-3 py-2.5"
+                                    className="cursor-pointer text-destructive font-semibold focus:text-destructive hover:bg-destructive/10 transition-smooth rounded-2xl px-3 py-3 touch-target"
                                 >
-                                    <LogOut className="mr-2.5 h-4 w-4" />
+                                    <LogOut className="mr-3 h-4 w-4" />
                                     <span>Cerrar sesión</span>
                                 </DropdownMenuItem>
                             </div>
